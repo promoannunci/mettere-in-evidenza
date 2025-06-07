@@ -635,7 +635,7 @@
                             </button>
                             <div class="faq-content px-6 pb-4 hidden">
                                 <p class="text-gray-600">
-                                    Forniamo statistiche dettagliate sul numero di visualizzazioni, interazioni e messaggi ricevuti grazie alla tua promozione. Potrai monitorare l'andamento in tempo reale.
+                                    Forniamo, su richiesta, statistiche dettagliate sul numero di visualizzazioni, interazioni e messaggi ricevuti grazie alla tua promozione.
                                 </p>
                             </div>
                         </div>
@@ -764,5 +764,35 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94bb0e9f5647ee6e',t:'MTc0OTI0NTkxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94bb0e9f5647ee6e',t:'MTc0OTI0NTkxMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script><script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Seleziona tutti i pulsanti con la classe 'faq-toggle'
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+
+        // Itera su ogni pulsante FAQ trovato
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                // Trova l'elemento della risposta (faq-content) subito dopo il pulsante
+                // `.nextElementSibling` prende l'elemento fratello successivo
+                const faqContent = this.nextElementSibling;
+                
+                // Trova l'icona della freccia all'interno del pulsante
+                const faqArrow = this.querySelector('.faq-arrow');
+
+                // Alterna la classe 'hidden' sulla risposta
+                // Se 'hidden' è presente, lo rimuove (mostrando la risposta)
+                // Se 'hidden' non è presente, lo aggiunge (nascondendo la risposta)
+                if (faqContent) {
+                    faqContent.classList.toggle('hidden');
+                }
+
+                // Ruota la freccia: 0 gradi quando nascosto, 180 gradi quando visibile
+                // La classe 'rotate-180' è fornita da Tailwind CSS
+                if (faqArrow) {
+                    faqArrow.classList.toggle('rotate-180');
+                }
+            });
+        });
+    });
+</script></body>
 </html>
