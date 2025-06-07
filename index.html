@@ -509,7 +509,104 @@
                                 Richiedi Info
                             </a>
                         </div>
+<section id="contatti" class="py-16 bg-blue-700 text-white">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold mb-8">Vuoi Promuovere il Tuo Annuncio?</h2>
+                    <p class="text-xl mb-8">
+                        Compila il modulo qui sotto e ti contatteremo il prima possibile per discutere le tue esigenze.
+                    </p>
+                    <form action="https://formsubmit.co/massi.corbetta@gmail.com" method="POST" class="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-lg text-gray-800">
+                        <input type="hidden" name="_subject" value="Nuova Richiesta Annuncio da Sito Web!">
+                        <input type="hidden" name="_next" value="https://promoannunci.github.io/promoprova/grazie.html">
+                        <div class="mb-4 text-left">
+                            <label for="nome" class="block text-gray-700 text-sm font-bold mb-2">Nome Completo:</label>
+                            <input type="text" id="nome" name="Nome" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Il tuo nome" required>
+                        </div>
+                        <div class="mb-4 text-left">
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+                            <input type="email" id="email" name="Email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="la.tua@email.com" required>
+                        </div>
 
+                        <div class="mb-4 text-left">
+                            <label for="servizio-scelto" class="block text-gray-700 text-sm font-bold mb-2">Servizio di Interesse:</label>
+                            <select id="servizio-scelto" name="Servizio di Interesse" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="">Seleziona un servizio</option>
+                                <option value="Post Singolo">Post Singolo (30€)</option>
+                                <option value="Pacchetto 4 Post">Pacchetto 4 Post (90€)</option>
+                                <option value="Pacchetto 10 Post">Pacchetto 10 Post (210€)</option>
+                                <option value="Altro/Informazioni Generiche">Altro/Informazioni Generiche</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-6 text-left">
+                            <label for="messaggio" class="block text-gray-700 text-sm font-bold mb-2">Messaggio (Opzionale):</label>
+                            <textarea id="messaggio" name="Messaggio" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Descrivi le tue esigenze o la tua richiesta..."></textarea>
+                        </div>
+                        <button type="submit" class="bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition transform hover:scale-105 shadow-lg">
+                            Invia Richiesta
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+                        <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const requestInfoButtons = document.querySelectorAll('.request-info-btn');
+            const servizioSceltoSelect = document.getElementById('servizio-scelto');
+            const contattiSection = document.getElementById('contatti');
+
+            requestInfoButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault(); // Previene il comportamento predefinito del link
+
+                    const serviceName = this.getAttribute('data-service');
+                    if (servizioSceltoSelect && serviceName) {
+                        // Trova l'opzione corrispondente nel menu a tendina e la seleziona
+                        let foundOption = false;
+                        for (let i = 0; i < servizioSceltoSelect.options.length; i++) {
+                            if (servizioSceltoSelect.options[i].value === serviceName) {
+                                servizioSceltoSelect.value = serviceName;
+                                foundOption = true;
+                                break;
+                            }
+                        }
+                        // Se il servizio non è tra le opzioni predefinite, seleziona "Altro" e aggiungi al messaggio
+                        if (!foundOption && serviceName) {
+                            servizioSceltoSelect.value = "Altro/Informazioni Generiche";
+                            const messaggioField = document.getElementById('messaggio');
+                            if (messaggioField && !messaggioField.value.includes(serviceName)) {
+                                messaggioField.value = `Richiesta informazioni per: ${serviceName}\n\n${messaggioField.value}`;
+                            }
+                        }
+                    }
+
+                    // Scorre la pagina fino alla sezione contatti
+                    if (contattiSection) {
+                        contattiSection.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Optional: Smooth scrolling per gli altri anchor link (come quelli nell'header)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                // Evita di applicare lo smooth scrolling ai bottoni "request-info-btn" che hanno già il loro gestore
+                if (!anchor.classList.contains('request-info-btn')) {
+                    anchor.addEventListener('click', function (e) {
+                        e.preventDefault();
+
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
                         <div class="service-card bg-white rounded-xl shadow-lg p-6 transition duration-300 border-t-4 border-yellow-500 transform scale-105 relative">
                             <div class="price-tag">90€</div>
                             <div class="discount-badge">-25%</div>
